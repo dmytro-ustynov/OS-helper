@@ -127,23 +127,32 @@ Will execute `date` command and save the output to `date.txt` file.
 
 ## View file content
 
+Show the content of `file.txt` in the terminal
 ```bash
 cat file.txt
 ```
 
-Will show the content of `file.txt` in the terminal
+
+Show the first 25 lines of `file.txt`
 
 ```bash
 head file.txt -n 25
 ```
 
-Will show the first 25 lines of `file.txt`
 
+Show the last 25 lines of `file.txt`
 ```bash
 tail file.txt -n 25
 ```
-Will show the last 25 lines of `file.txt`
 
+
+Tail has a beautiful option `-f` which will show the file content in real time, and will update the content if file is updated.
+
+```bash
+tail -f log_file.txt
+```
+
+Especially useful for logs, when you want to see the updates in real time.
 
 ## Copy, Move, Delete
 
@@ -153,13 +162,13 @@ Copy:
 
 Move:
 
-`cp <source> <destination>`
+`mv <source> <destination>`
 
 Delete:
 
 `rm path-to-file/file.txt`
 
-delete recursively:
+Delete recursively:
 
 `rm -r folder/`
 
@@ -247,7 +256,7 @@ OPTIONS:
 
 `-P` - (capital P) -- specifies port number
 
-'-r' - copy recursively, e.g. entire folder 
+`-r` - copy recursively, e.g. entire folder 
 
 Look closer what `<source>` consist of:
 
@@ -255,9 +264,9 @@ Look closer what `<source>` consist of:
 
 `<destination>` -- is path
 
-`~` in the start means home directory of the user
+`~` in the start of the path means home directory of the user
 
-`/` in the start means root directory
+`/` in the start of the path means root directory, absolute path
 
 `./` in the start means current directory
 
