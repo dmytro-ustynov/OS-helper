@@ -10,19 +10,29 @@ Set `/home` approximately 60% of total disk
 
 Set `/` all  of the rest space
 
-No empty space left on disk
+No empty space left on .
+
+
+Check disk partitions:
+
+```bash
+lsblk
+```
+should see something like:
+
+![images/img.png](images/img.png)
 
 ## User management
 
 1. Create one more user and make it root
 
 ```bash
-useradd -m -s /bin/bash vasya
+sudo useradd -m -s /bin/bash vasya
 ```
 
 `-m` - makes home folder
 
-'-s' - sets the default shell 
+`-s` - sets the default shell 
 
 This will add user `vasya` to the system.
 
@@ -38,7 +48,7 @@ Then enter the password
 passwd -e vasya 
 ```
 
-OPTIONALLY . you may install `fish` as your default shell for the user
+OPTIONALLY : you may install `fish` as your default shell for the user
 
 
 ```bash
@@ -47,12 +57,12 @@ sudo apt-get install -y fish
 
 To use it: 
 
-add in the /etc/passwd for this user or edit with usermod:
+add shell in the /etc/passwd for this user 
+or edit with usermod:
 
 ```bash
 sudo usermod -s /usr/bin/fish vasya
 ```
-
 
 4. Make user `vasya` root
 
@@ -73,6 +83,21 @@ id vasya
 
 Should see, that vasya has (sudo) group
 
+### switch between users
+
+switch to user `vasya`
+
+```bash
+su vasya
+```
+
+Switch to `root` user
+
+```bash
+sudo -i
+```
+
+
 ## File and disk commands
 
 Create a file:
@@ -89,6 +114,38 @@ nano file.txt
 Will open `file.txt` in nano redactor, if file not exist, it will be created.
 
 Starting nano without filename will create empty file, and after editing on exit will ask which filename to save.
+
+
+Saving file as a result of some command:
+
+```bash
+date > date.txt
+``` 
+
+Will execute `date` command and save the output to `date.txt` file.
+
+
+## View file content
+
+```bash
+cat file.txt
+```
+
+Will show the content of `file.txt` in the terminal
+
+```bash
+head file.txt -n 25
+```
+
+Will show the first 25 lines of `file.txt`
+
+```bash
+tail file.txt -n 25
+```
+Will show the last 25 lines of `file.txt`
+
+
+## Copy, Move, Delete
 
 Copy:
 
@@ -121,7 +178,9 @@ Change directory (go to some folder)
 
 `cd foldername`
 
-`foldername` is path , when it starts with `/` sign it 
+`foldername` is path , when it starts with `/` sign it will be the absolute path. 
+
+If no `/` on the start it will look for the folder (path) in the current directory.
 
 ### Make file executable
 
@@ -174,6 +233,7 @@ ssh -p 3005 dmytro@172.20.10.6
 
 ## Copy file via SSH
 
+Use `scp` command to copy files via SSH.
 
 ## from remote to local
 ```bash
@@ -194,6 +254,14 @@ Look closer what `<source>` consist of:
 `<username>@<ip_address>:<path>`
 
 `<destination>` -- is path
+
+`~` in the start means home directory of the user
+
+`/` in the start means root directory
+
+`./` in the start means current directory
+
+`../` in the start means parent directory
 
 
 ## from local to remote
