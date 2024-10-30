@@ -77,6 +77,12 @@ sudo nano /etc/ssh/sshd_config
 ```
 In the file change `# Port 22` to `Port 3005` for example , set <30NN> where NN - is your number in Journal
 
+### restart service
+
+```bash
+sudo service ssh restart
+```
+
 Check ufw
 ```bash
 sudo ufw allow 3005
@@ -99,11 +105,29 @@ ssh -p 3005 dmytro@172.20.10.6
 
 ## from remote to local
 ```bash
-scp -P 2002 ssh-admin@192.168.1.105:/home/ssh-admin/host-copy-file.txt ~/programm/tutorials/OS_tutorial 
+scp -P 3005 ssh-admin@192.168.1.105:/home/ssh-admin/host-copy-file.txt ~/programm/tutorials/OS_tutorial 
 ```
+
+Common syntax is: 
+`scp <options> <source> <destination>`
+
+OPTIONS: 
+
+`-P` - (capital P) -- specifies port number
+
+'-r' - copy recursively, e.g. entire folder 
+
+<source>:
+
+<username>@<ip_address>:<path>
+
+<destination> -- is path
 
 
 ## from local to remote
+
+
+The same syntax, but source is your local path, and source is remote
 ```bash
 scp -P 2002 ~/programm/tutorials/OS_tutorial/OS-helper/README.md ssh-admin@192.168.1.105:/home/ssh-admin/
 ```
