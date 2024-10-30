@@ -1,4 +1,4 @@
-# OS-helper
+# OS commands helper
 
 ## Ubuntu installation
 
@@ -17,10 +17,14 @@ No empty space left on disk
 1. Create one more user and make it root
 
 ```bash
-useradd vasya
+useradd -m -s /bin/bash vasya
 ```
 
-This will add user `vasya` to the system
+`-m` - makes home folder
+
+'-s' - sets the default shell 
+
+This will add user `vasya` to the system.
 
 2. Set password for the user
 
@@ -34,13 +38,28 @@ Then enter the password
 passwd -e vasya 
 ```
 
+OPTIONALLY . you may install `fish` as your default shell for the user
+
+
 ```bash
+sudo apt-get install -y fish
+```
+
+To use it: 
+
+add in the /etc/passwd for this user or edit with usermod:
+
+```bash
+sudo usermod -s /usr/bin/fish vasya
+```
+
 
 4. Make user `vasya` root
 
 ```bash
 usermod -aG sudo vasya
 ```
+
 Options  means `-a` -- append to `-G` group `sudo` for user `vasya`
 
 Options `-a` and `-G` splits together to `-aG`
@@ -61,6 +80,41 @@ nano file.txt
 Will open `file.txt` in nano redactor, if file not exist, it will be created.
 
 Starting nano without filename will create empty file, and after editing on exit will ask which filename to save.
+
+Copy:
+
+`cp <source> <destination>`
+
+Move:
+
+`cp <source> <destination>`
+
+Delete:
+
+`rm path-to-file/file.txt`
+
+delete recursively:
+
+`rm -r folder/`
+
+Create Folder
+
+`mkdir foldername`
+
+
+Delete Folder
+
+`rmdir foldername`
+
+### Make file executable
+
+To make file executable script, it should be modified with `chmod` command
+
+```bash
+chmod +x script.sh
+``` 
+
+`.sh` extension is not necessary, but it is a good practice to use it for shell scripts
 
 ## SSH connection
 
@@ -87,6 +141,7 @@ Check ufw
 ```bash
 sudo ufw allow 3005
 ```
+
 ```bash
 sudo ufw status
 ```
@@ -117,11 +172,11 @@ OPTIONS:
 
 '-r' - copy recursively, e.g. entire folder 
 
-<source>:
+Look closer what `<source>` consist of:
 
-<username>@<ip_address>:<path>
+`<username>@<ip_address>:<path>`
 
-<destination> -- is path
+`<destination>` -- is path
 
 
 ## from local to remote
