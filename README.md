@@ -64,6 +64,15 @@ Options  means `-a` -- append to `-G` group `sudo` for user `vasya`
 
 Options `-a` and `-G` splits together to `-aG`
 
+
+check user is root :
+
+```bash
+id vasya
+```
+
+Should see, that vasya has (sudo) group
+
 ## File and disk commands
 
 Create a file:
@@ -105,6 +114,14 @@ Create Folder
 Delete Folder
 
 `rmdir foldername`
+
+## Disk navigation
+
+Change directory (go to some folder)
+
+`cd foldername`
+
+`foldername` is path , when it starts with `/` sign it 
 
 ### Make file executable
 
@@ -182,7 +199,10 @@ Look closer what `<source>` consist of:
 ## from local to remote
 
 
-The same syntax, but source is your local path, and source is remote
+The same syntax, but source is your local path, and destination is remote.
+
+Notice, source and destination are swapped and splitted with space.
+
 ```bash
 scp -P 2002 ~/programm/tutorials/OS_tutorial/OS-helper/README.md ssh-admin@192.168.1.105:/home/ssh-admin/
 ```
