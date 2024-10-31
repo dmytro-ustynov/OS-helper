@@ -222,10 +222,13 @@ In the file change `# Port 22` to `Port 3005` for example , set <30NN> where NN 
 sudo service ssh restart
 ```
 
-Check ufw
+Add rule in the firewall to allow traffic on `3005` port: 
+
 ```bash
 sudo ufw allow 3005
 ```
+
+Check firewall settings with `ufw`
 
 ```bash
 sudo ufw status
