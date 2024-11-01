@@ -286,3 +286,25 @@ Notice, source and destination are swapped and splitted with space.
 ```bash
 scp -P 2002 ~/programm/tutorials/OS_tutorial/OS-helper/README.md ssh-admin@192.168.1.105:/home/ssh-admin/
 ```
+
+## Crontab
+
+Watch and check syntax here https://crontab.guru/
+
+### how to edit crontab
+
+```bash
+crontab -e
+```
+
+### how to list crontab
+
+```bash
+crontab -l
+```
+
+Example of the script to run every day at 09:00
+
+```bash
+0 9 * * * /bin/bash /home/everyday_video/silence_minute_play.sh
+```
