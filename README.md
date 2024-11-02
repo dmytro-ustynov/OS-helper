@@ -308,3 +308,23 @@ Example of the script to run every day at 09:00
 ```bash
 0 9 * * * /bin/bash /home/everyday_video/silence_minute_play.sh
 ```
+
+## Record your terminal
+To start recording with script, provide two destination files: a timing file and a typescript file:
+    
+```bash
+script --timing=time.tm myscript
+```
+Script will record all the commands, you perform in terminal, their outputs etc. All you have done will be saved to the `myscript` file, and timing to the `time.tm` file.
+
+To replay the script, use the following command:
+
+```bash
+scriptreplay --timing=time.tm myscript
+```
+
+You will see the same commands, you have performed in the terminal, and their outputs. 
+
+Magic!
+
+![img.png](images/img2.png)
