@@ -1,5 +1,19 @@
 # OS commands helper
 
+# Table of contents
+1. [Ubuntu installation](#ubuntu-installation)
+2. [User management](#user-management)
+3. [File and disk commands](#file-and-disk-commands)
+4. [View file content](#view-file-content)
+5. [Copy, Move, Delete](#copy-move-delete)
+6. [Disk navigation](#disk-navigation)
+7. [Make file executable](#make-file-executable)
+8. [SSH connection](#ssh-connection)
+9. [Copy file via SSH](#copy-file-via-ssh)
+10. [Crontab and at](#crontab-and-at)
+11. [Record your terminal](#record-your-terminal)
+12. [Network troubleshoot](#network-troublleshoot)
+
 ## Ubuntu installation
 
 Set `/boot` approximately 0.5 - 1Gb
@@ -287,9 +301,22 @@ Notice, source and destination are swapped and splitted with space.
 scp -P 2002 ~/programm/tutorials/OS_tutorial/OS-helper/README.md ssh-admin@192.168.1.105:/home/ssh-admin/
 ```
 
-## Crontab
+## Crontab and at
 
 Watch and check syntax here https://crontab.guru/
+
+
+First of all check your host machine time:
+```bash
+date
+```
+Should see the current time of the host machine, notice if it will have different time zone or different time.
+
+To set the time zone of the VM, use the following command:
+
+```bash
+sudo timedatectl set-timezone Europe/Kiev
+```
 
 ### how to edit crontab
 
@@ -308,6 +335,39 @@ Example of the script to run every day at 09:00
 ```bash
 0 9 * * * /bin/bash /home/everyday_video/silence_minute_play.sh
 ```
+
+### How to run a script at a specific time 
+
+To run `at` in terminal and provide the command to run at a specific time:
+
+```bash
+at 09:00
+```
+Then provide the command to run at this time:
+
+```bash
+/bin/bash /home/everyday_video/silence_minute_play.sh
+```
+To finish editing, press **Ctrl+D**
+
+#### View the scheduled tasks
+
+To view the task that were scheduled with `at` command, use the following command:
+```bash
+atq
+```
+
+
+
+#### Remove the scheduled task
+
+To remove the task, use the following command:
+
+```bash
+atrm <task_number>
+```
+The <task_number> you can get from the `atq` command output.
+
 
 ## Record your terminal
 To start recording with script, provide two destination files: a timing file and a typescript file:
@@ -328,3 +388,13 @@ You will see the same commands, you have performed in the terminal, and their ou
 Magic!
 
 ![img.png](images/img2.png)
+
+# Network troublleshoot
+
+Example how to set IP address to the interface manually:
+
+```bash
+sudo ip addr add 192.168.1.111/24 dev enp0s8
+```
+
+IP address should be in the same network as the router (host PC), and the same network mask.
