@@ -13,6 +13,8 @@
 10. [Crontab and at](#crontab-and-at)
 11. [Record your terminal](#record-your-terminal)
 12. [Network troubleshoot](#network-troublleshoot)
+13. [Docker minimal setup](#docker-minimal-setup)
+14. 
 
 ## Ubuntu installation
 
@@ -398,3 +400,57 @@ sudo ip addr add 192.168.1.111/24 dev enp0s8
 ```
 
 IP address should be in the same network as the router (host PC), and the same network mask.
+
+
+## Docker minimal setup
+
+To install follow instructions from https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+
+After installation it is very helpful to add your username to `docker` group, so you can run docker commands without `sudo`:
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Now you can run docker commands without `sudo`
+
+### docker commands
+
+To download some image, for example `nginx`:
+
+```bash
+docker pull nginx
+```
+
+To run some container:
+
+```bash
+docker run --name nginx_container -d -p 8080:80 nginx
+```
+
+This command will start contaiiner from image `nginx`, and will redirect port 8080 from host machine to 80 port inside docker container.
+
+To check running containers:
+
+```bash
+docker ps
+```
+
+You should see the running container `nginx_container`:
+
+```bash
+ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                                     NAMES
+d58d48de7838   nginx     "/docker-entrypoint.…"   7 hours ago   Up 7 hours   0.0.0.0:80->80/tcp, :::8080->80/tcp         nginx_container
+``` 
+
+To stop the container you may use `docker stop` command with name of the container or container ID:
+
+```bash
+docker stop nginx_container
+```
+or 
+
+```bash
+docker stop d58d48de7838
+```
