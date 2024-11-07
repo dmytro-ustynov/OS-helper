@@ -36,6 +36,14 @@ fi
 ```
 `-f` checks if the file exists and is a regular file.
 
+`-d` checks if the path exists and is a directory.
+
+To see other possible options of `[[condition]]` syntax you may use 
+```bash
+man test
+```
+
+
 ## 2. For and While Loops
 Loops allow you to repeat tasks.
 
