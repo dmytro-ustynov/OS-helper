@@ -1,5 +1,9 @@
 # BASH scripts
 
+Pretty good manual on bash scripts: https://www.freecodecamp.org/news/shell-scripting-crash-course-how-to-write-bash-scripts-in-linux/
+
+![img.png](../images/img3.png)
+
 ## 1. Conditional Statements
 In Bash, conditional statements allow you to execute commands based on certain conditions.
 
