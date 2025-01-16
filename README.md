@@ -8,6 +8,7 @@
 5. [Copy, Move, Delete](#copy-move-delete)
 6. [Disk navigation](#disk-navigation)
 7. [Make file executable](#make-file-executable)
+8. [Process management](#process-management)
 8. [SSH connection](#ssh-connection)
 9. [Copy file via SSH](#copy-file-via-ssh)
 10. [Crontab and at](#crontab-and-at)
@@ -216,6 +217,66 @@ chmod +x script.sh
 ``` 
 
 `.sh` extension is not necessary, but it is a good practice to use it for shell scripts
+
+## Process management
+
+Process is a running instance of a program. It operates in the system memory, and has its own PID (process identifier). It occupies some system resources, like CPU, memory, files etc. Some processes started by the user (like commands you perform in terminal), some of them are system processes.
+
+To view all processes dynamically use `top` command or `htop` command.
+
+To stop (kill) the process use `kill` command with the process ID (PID) of the process.
+
+Important to know about kill signals:
+ - Option `-9` means sending `SIGKILL` signal to the process, which is the most powerful signal, and it will kill the process immediately - becauses it is **uncatchable** and **unignorable**. Other signals like `SIGTERM` or `SIGINT` can be caught by the process, and it can handle them, but `SIGKILL` is not.
+ - Not every process can be killed, some of them are system processes, and they are necessary for the system to work properly. Killing them is restricted from user space, because they are processing in the kernel space
+ - [Zombie](#what-is-zombie-process) processes cannot be killed by `kill -9`
+
+
+To view static list of processes use `ps` command with options:
+
+```bash
+ps -eo pid,ppid,user,comm,stat,etime --sort=-etime | head -n 20
+```
+
+`-eo` means watch Every process with selected format output.
+
+`--sort` means what metric to sort, may be used with `-` sign, meaning descending order.
+
+Very useful columns to view (not the all possible but mostly used ):
+- **pid** -- PID of the process, (process ideintifier)
+- **ppid** -- Parent PID
+- **user** -- user who initiated the process
+- **etime** -- elapsed time  since the process was started (or etimes -- in seconds)
+- **comm** -- command (only the executable name), or exe - path to the executable.
+- **pmem** -- percent of memory
+
+See the `man ps` manual for exhaustive reference
+
+
+### What is zombie process?
+A zombie process in Linux is a process that has completed execution but still has an entry in the process table. This happens when the process's parent process has not read its exit status via a system call like `wait()`.
+
+Key points:
+- Lifecycle: When a process finishes execution, it enters a "zombie" state to allow its parent to retrieve its exit status.
+- Process Table Entry: The zombie process remains in the process table to store its exit information until the parent acknowledges it.
+- Resource Usage: A zombie process doesn't use system resources (CPU or memory), but it occupies a slot in the process table.
+- Resolution: If the parent process does not handle the zombie, it can lead to resource leaks. The init process (PID 1) will eventually adopt and clean it up if the parent terminates.
+
+- To list zombie processes, use:
+```bash
+ps aux | grep Z
+```
+You can not just kill the zombie process, because it is already dead.
+
+How to Handle Zombies Instead
+1. Signal the Parent Process:
+Use `kill -s SIGCHLD <PPID>` to inform the parent process to clean up the zombie by reading its exit status.
+
+2. Terminate or Restart the Parent Process:
+If the parent is not responding or malfunctioning, terminate it with `kill <PPID>`. This causes the zombie to be adopted by init (PID 1), which will automatically clean it up.
+
+3. System Reboot:
+As a last resort, rebooting the system will clear all zombie processes since the process table is reset.
 
 ## SSH connection
 
