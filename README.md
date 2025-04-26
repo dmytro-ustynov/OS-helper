@@ -224,6 +224,8 @@ Process is a running instance of a program. It operates in the system memory, an
 
 To view all processes dynamically use `top` command or `htop` command.
 
+To view tree of processes and discover which are parents and which are children use `pstree` command. 
+
 To stop (kill) the process use `kill` command with the process ID (PID) of the process.
 
 Important to know about kill signals:
@@ -246,8 +248,8 @@ Very useful columns to view (not the all possible but mostly used ):
 - **pid** -- PID of the process, (process ideintifier)
 - **ppid** -- Parent PID
 - **user** -- user who initiated the process
-- **etime** -- elapsed time  since the process was started (or etimes -- in seconds)
-- **comm** -- command (only the executable name), or exe - path to the executable.
+- **etime** -- elapsed time  since the process was started (or **etimes** -- in seconds)
+- **comm** -- command (only the executable name), or **exe** - path to the executable.
 - **pmem** -- percent of memory
 
 See the `man ps` manual for exhaustive reference
@@ -419,8 +421,6 @@ To view the task that were scheduled with `at` command, use the following comman
 ```bash
 atq
 ```
-
-
 
 #### Remove the scheduled task
 
