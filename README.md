@@ -15,7 +15,8 @@
 11. [Record your terminal](#record-your-terminal)
 12. [Network troubleshoot](#network-troubleshoot)
 13. [Docker minimal setup](#docker-minimal-setup)
-14. [Bash scripts](./bash-scripts/README.md#bash-scripts)
+14. [Docker advanced reading](https://github.com/dmytro-ustynov/OS-helper/blob/main/Docker%20advanced.md)
+15. [Bash scripts](./bash-scripts/README.md#bash-scripts)
 
 ## Ubuntu installation
 
@@ -521,3 +522,5 @@ or
 ```bash
 docker stop d58d48de7838
 ```
+
+To read more about Docker , how it works, and its advanced techniques, watch [here](https://github.com/dmytro-ustynov/OS-helper/blob/main/Docker%20advanced.md)
