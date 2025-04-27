@@ -21,10 +21,7 @@ You may start your own [GitLab](https://hub.docker.com/r/gitlab/gitlab-ce), [Con
 
 
 <details>
-  <summary>Tl; DR How docker actually "isolate" everything under the hood? Click to read more</summary>
-Alright — you’re asking for a **deep**, serious explanation of how **Docker** achieves **isolation**.  
-Let’s go methodically, because this topic touches **OS internals**, **kernel features**, and **resource management**.  
-I'll break it down clearly and precisely.
+  <summary>How docker actually "isolate" everything under the hood? Click to read more</summary>
 
 ---
 
@@ -124,14 +121,6 @@ Inside a container:
 
 **Important:**  
 A container is **just a process on the host**, but it's heavily wrapped in isolation layers.
-
-```bash
-# On host:
-ps aux
-
-# You'll see container processes!
-# They're just regular Linux processes.
-```
 
 ---
 
