@@ -2,13 +2,22 @@
 To install docker follow the actual official installation guide:
 https://docs.docker.com/engine/install/
 
-* Docker engine -- the core of Docker, responsible for running containers, managing images, volumes and handling networking. The main part to have installed. 
 
-* Docker Desktop -- useful GUI for managing Docker containers, images and volumes. It is not required to run Docker, but it is very helpful for development and debugging in a convenient and visual way.
+## Docker components
 
-* Docker Compose -- a tool for defining and running multi-container Docker applications. It allows you to define services, networks, and volumes in a single YAML file, making it easier to manage complex applications. 
+**Docker Engine** — the core of Docker, responsible for running containers, managing images, handling volumes, and setting up networking. It is the primary component that must be installed to use Docker.
 
+**Docker Desktop** — a graphical user interface (GUI) for managing Docker containers, images, networks, and volumes. While not strictly required to run Docker, it is very helpful for development, debugging, and managing Docker resources in a convenient, visual way. Docker Desktop also bundles Docker Engine and Docker Compose together for ease of setup.
 
+**Docker Compose** — a tool for defining and managing multi-container Docker applications. It allows you to describe your application’s services, networks, and volumes using a single YAML file, simplifying the deployment and orchestration of complex setups.
+
+**Docker Swarm** — Docker's native clustering and orchestration tool, enabling you to manage a group of Docker engines as a single virtual system. It allows you to deploy, scale, and manage containerized applications across multiple nodes, providing features like load balancing and service discovery.
+
+**Docker Registry** — a service for storing and distributing Docker images. The most popular public registry is Docker Hub, but you can also deploy a private registry for more controlled image management within your organization.
+
+**Docker BuildKit** — an advanced toolkit for building Docker images, improving build performance, caching, and introducing more powerful features such as parallel build steps and secret management during the build process.
+
+---
 ## Docker images VS Docker containers
 
 * Docker image -- a lightweight, standalone, and executable software package that includes everything needed to run a piece of software, including the code, runtime, libraries, environment variables, and configuration files. Images are read-only and can be used to create containers. Most software vendors provide Docker images for their applications, which can be pulled from [Docker Hub](https://hub.docker.com/) or other container registries. You may start a container from an image, and the container will run the software as defined in the image. 
@@ -266,12 +275,13 @@ Host OS
  
 </details>
 
+---
+
 ## Docker layers concept -- how containers are built
 Docker images are built in layers. Each layer represents a set of file changes or instructions. When you create a new image, Docker creates a new layer on top of the existing layers. This allows for efficient storage and sharing of images. Layers are immutable, meaning once created, they cannot be changed. Instead, new layers are created for any modifications. This is what makes Docker images lightweight and efficient. 
 
 Click the **more** button below to read more about how Docker images are built and how layers work.
 
----
 <details> 
   <summary>Tl; DR  How docker builds images and how layers work </summary>
 
@@ -461,8 +471,7 @@ An image is described by a **JSON manifest** like:
 ---
 </details>
 
-
-# Docker commands and practice
+---
 
 ## Docker commands
 To list all images:
@@ -633,6 +642,9 @@ EOF
 mongod --config /etc/mongod.conf
 ```
 
+
+---
+
 ## 📚 Running Containers with Dockerfile
 
 Very often, to start a container, you need to specify a lot of parameters: environment variables, volumes (sometimes several), port mappings, container name, network, and more.  
@@ -746,9 +758,7 @@ docker run -d \
 Notice that the command is now slightly shorter —  
 you don't need to pass `-e` environment variables manually anymore, because they are already **baked into the image**.
 
----
-
-## ⚡ However...
+### ⚡ However...
 
 Even with a Dockerfile, **volume mounts**, **network**, **port mappings**, and **container name** still need to be passed manually when running the container.
 
