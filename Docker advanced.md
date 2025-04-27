@@ -934,7 +934,7 @@ docker-compose up -d
 
 Another option to  build the container and run it in a single command is to use `docker-compose up --build -d`.
 
-# 📢 Quick Recap:
+### 📢 Quick Recap:
 
 | Concept | Where it goes |
 | :--- | :--- |
@@ -942,7 +942,7 @@ Another option to  build the container and run it in a single command is to use 
 | Port mapping, volumes, network, container name | `docker-compose.yml` or `docker run` |
 
 
-### Dockerfile VS docker-compose.yml
+## Dockerfile VS docker-compose.yml
 
 - Dockerfile: The Blueprint for a Single Container Image. This file contains a set of instructions for Docker to build a single container image. 1  It specifies the base operating system, installs software, copies files, sets environment variables, defines the entry point, and more. It's all about defining what goes into that one specific image.
 
@@ -970,7 +970,7 @@ A better way is to use an **`.env` file** — a simple text file where you keep 
 
 ---
 
-# 📦 What is an `.env` File?
+### 📦 What is an `.env` File?
 
 An `.env` file is a plain text file that contains **key-value pairs**:
 
@@ -1105,9 +1105,9 @@ local.env       # development settings (overrides default)
 
 ---
 
-# 📄 Example contents
+### 📄 Example contents
 
-### `.env` (Production)
+#### `.env` (Production)
 
 ```
 POSTGRES_USER=admin
@@ -1117,7 +1117,7 @@ PGDATA=/var/lib/postgresql/data/pgdata
 POSTGRES_INITDB_ARGS=--encoding=UTF8 --locale=en_US.UTF-8
 ```
 
-### `local.env` (Development)
+#### `local.env` (Development)
 
 ```
 POSTGRES_USER=devadmin
@@ -1129,7 +1129,7 @@ POSTGRES_INITDB_ARGS=--encoding=UTF8 --locale=en_US.UTF-8
 
 ---
 
-# 🛠️ How to Run with Different Environments
+## 🛠️ How to Run with Different Environments
 
 By default, Docker Compose automatically reads `.env` file in the current directory.
 
@@ -1177,6 +1177,7 @@ docker --env-file local.env compose up -d
 
 You can also **create multiple Docker Compose files** (`docker-compose.override.yml`) for even more flexibility, but using `.env` is usually enough for many projects.
 
+---
 
 # Docker for Professionals
 
@@ -1187,7 +1188,6 @@ Docker has a built-in solution for this — **Docker Secrets**.
 
 **Docker Secrets** allow you to securely store sensitive information **outside the image**, **outside the environment variables**, and **only available at runtime** to the container.
 
----
 
 ## 🧠 How Docker Secrets Work
 
@@ -1208,7 +1208,7 @@ Docker has a built-in solution for this — **Docker Secrets**.
 
 ## 📄 Example: Setting Up a Database Password with Docker Secrets
 
-## 1. Create a Secret
+### 1. Create a Secret
 
 ```bash
 echo "supersecureprodpassword" | docker secret create postgres_password -
@@ -1225,7 +1225,7 @@ Now Docker securely stores this secret.
 
 ---
 
-## 🔍 After a Docker Secret is created:
+#### 🔍 After a Docker Secret is created:
 
 - **`docker secret ls`** shows **only the secret names and IDs**, not the content.
 - **`docker secret inspect <secret>`** shows **metadata** (like creation date, secret ID, labels) — **NOT** the secret value itself.
@@ -1239,7 +1239,7 @@ If you lose the original plain-text source (the file or command you used to crea
 
 ---
 
-### 🧠 Important concepts:
+#### 🧠 Important concepts:
 
 | Behavior | Details |
 |:---|:---|
@@ -1251,7 +1251,7 @@ If you lose the original plain-text source (the file or command you used to crea
 
 ---
 
-### 🛡️ Why Docker Does This:
+#### 🛡️ Why Docker Does This:
 
 - Prevent **accidental leaks** (no "oops" moments from inspecting secrets).
 - Prevent secrets from being stored in container logs, `docker inspect` outputs, or API calls.
@@ -1259,7 +1259,7 @@ If you lose the original plain-text source (the file or command you used to crea
 
 ---
 
-### 🚨 If you need to update a secret:
+#### 🚨 If you need to update a secret:
 
 You **cannot update** a secret in place.
 You must:
@@ -1275,13 +1275,13 @@ You must:
 
 ---
 
-### 🔥 In short:
+#### 🔥 In short:
 > **Docker Secrets are "write-once, access-at-runtime-only" secure objects.**
 
 ---
 </details>
 
-## 2. Update `docker-compose.yml` (Swarm style)
+### 2. Update `docker-compose.yml` (Swarm style)
 
 ```yaml
 version: "3.9"
@@ -1318,7 +1318,7 @@ networks:
 
 ---
 
-## 3. Deploy with Docker Swarm
+### 3. Deploy with Docker Swarm
 
 Docker Secrets **require Swarm mode**, so you need to initialize it first:
 
