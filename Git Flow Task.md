@@ -639,3 +639,53 @@ If you complete the exercise early, try these additional challenges:
 ---
 
 **🎉 Congratulations!** Your team has completed a professional-grade Git collaboration exercise that mirrors real-world development workflows. You now have hands-on experience with industry-standard Git practices and a portfolio-worthy project to showcase your collaboration skills!
+
+---
+
+**P.s. Bonus content**
+
+Diagram in specific _mermaid_ format, that is described in text but visible as a diagram:
+
+```mermaid
+gitGraph
+    commit id: "Initial commit"
+    commit id: "Add README"
+    commit id: "Add .gitignore"
+    
+    branch dev
+    checkout dev
+    commit id: "Create dev branch"
+    
+    branch feature/backend-api
+    checkout feature/backend-api
+    commit id: "feat: init backend structure"
+    commit id: "feat: add database config"
+    commit id: "feat: implement auth endpoints"
+    
+    checkout dev
+    merge feature/backend-api
+    commit id: "Merge: Add backend API (#1)"
+    
+    branch feature/frontend-ui
+    checkout feature/frontend-ui
+    commit id: "feat: create HTML structure"
+    commit id: "feat: add CSS styling"
+    commit id: "feat: add JavaScript logic"
+    
+    checkout dev
+    merge feature/frontend-ui
+    commit id: "Merge: Add frontend UI (#2)"
+    
+    branch feature/documentation
+    checkout feature/documentation
+    commit id: "docs: create comprehensive README"
+    commit id: "docs: add API documentation"
+    
+    checkout dev
+    merge feature/documentation
+    commit id: "Merge: Add documentation (#3)"
+    
+    checkout main
+    merge dev
+    commit id: "Release: v1.0.0"
+```
