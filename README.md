@@ -106,7 +106,7 @@ Should see, that vasya has (sudo) group
 switch to user `vasya`
 
 ```bash
-su vasya
+su - vasya
 ```
 
 Switch to `root` user
