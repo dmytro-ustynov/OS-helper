@@ -17,6 +17,7 @@
 13. [Docker minimal setup](#docker-minimal-setup)
 14. [Docker advanced reading](https://github.com/dmytro-ustynov/OS-helper/blob/main/Docker%20advanced.md)
 15. [Bash scripts](./bash-scripts/README.md#bash-scripts)
+16. [Git Under the Hood](./Git%20under%20the%20hood.md) - Deep dive into Git internals, objects, and how it really works
 
 ## Ubuntu installation
 
